@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
     <Version>0.1.0</Version>
-    <Authors>phrasmotica</Authors>
-    <Company>phrasmotica</Company>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <Description>This is a library that provides implementations of battles based on the components of BattleSystem.Core and its related packages, targeting .NET 5.0.</Description>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>phrasmotica</Authors>
+    <Company />
+    <Description>This is a library that provides implementations of battles based on the components of BattleSystem.Core and its related packages, targeting .NET Standard 2.0.</Description>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BattleSystem.Abstractions" Version="0.1.0" />
-    <PackageReference Include="BattleSystem.Core" Version="0.1.0" />
+    <PackageReference Include="BattleSystem.Abstractions" Version="0.2.0" />
+    <PackageReference Include="BattleSystem.Core" Version="0.2.0" />
   </ItemGroup>
 
   <ItemGroup>

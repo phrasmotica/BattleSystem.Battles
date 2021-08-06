@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using BattleSystem.Core.Characters;
 using BattleSystem.Core.Moves;
-using BattleSystem.Core.Moves.Success;
 using BattleSystem.Core.Random;
+using BattleSystem.Core.Success;
 
 namespace BattleSystem.Battles.TurnBased.Moves.Success
 {
@@ -12,7 +11,7 @@ namespace BattleSystem.Battles.TurnBased.Moves.Success
     /// factor multiplied by the amount of times this action has been used
     /// successfully since it last failed, bounded by a minimum success rate.
     /// </summary>
-    public class DecreasesLinearlyWithUsesSuccessCalculator : ISuccessCalculator
+    public class DecreasesLinearlyWithUsesSuccessCalculator : ISuccessCalculator<Move, MoveUseResult>
     {
         /// <summary>
         /// The base success rate.
@@ -28,6 +27,11 @@ namespace BattleSystem.Battles.TurnBased.Moves.Success
         /// The minimum success rate.
         /// </summary>
         private readonly int _minimumSuccessRate;
+
+        /// <summary>
+        /// The user of the move.
+        /// </summary>
+        private readonly Character _user;
 
         /// <summary>
         /// The random number generator.
@@ -57,6 +61,7 @@ namespace BattleSystem.Battles.TurnBased.Moves.Success
             int baseSuccessRate,
             int linearFactor,
             int minimumSuccessRate,
+            Character user,
             IRandom random,
             MoveUseResult failureResult,
             IActionHistory actionHistory)
@@ -64,15 +69,16 @@ namespace BattleSystem.Battles.TurnBased.Moves.Success
             _baseSuccessRate = baseSuccessRate;
             _linearFactor = linearFactor;
             _minimumSuccessRate = minimumSuccessRate;
+            _user = user;
             _random = random ?? throw new ArgumentNullException(nameof(random));
             _failureResult = failureResult;
             _actionHistory = actionHistory ?? throw new ArgumentNullException(nameof(actionHistory));
         }
 
         /// <inheritdoc />
-        public MoveUseResult Calculate(Character user, Move move, IEnumerable<Character> otherCharacters)
+        public MoveUseResult Calculate(Move move)
         {
-            var count = _actionHistory.GetMoveConsecutiveSuccessCount(move, user);
+            var count = _actionHistory.GetMoveConsecutiveSuccessCount(move, _user);
             var chance = Math.Max(_minimumSuccessRate, _baseSuccessRate - _linearFactor * count);
             var r = _random.Next(100) + 1;
             return r <= chance ? MoveUseResult.Success : _failureResult;

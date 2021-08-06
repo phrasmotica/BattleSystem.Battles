@@ -54,7 +54,7 @@ namespace BattleSystem.Battles.TurnBased.Extensions
         {
             if (character.HasItem)
             {
-                var taggedActions = character.Item.GetCharacterTaggedActions(tag);
+                var taggedActions = character.Item.ActionContainer.GetTaggedActions(tag);
                 foreach (var a in taggedActions)
                 {
                     a.Action.SetTargets(character, otherCharacters);

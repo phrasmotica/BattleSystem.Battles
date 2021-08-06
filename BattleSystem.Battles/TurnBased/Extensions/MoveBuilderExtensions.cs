@@ -1,6 +1,6 @@
 ﻿using BattleSystem.Battles.TurnBased.Moves.Success;
+using BattleSystem.Core.Characters;
 using BattleSystem.Core.Moves;
-using BattleSystem.Core.Moves.Success;
 using BattleSystem.Core.Random;
 
 namespace BattleSystem.Battles.TurnBased.Extensions
@@ -26,15 +26,17 @@ namespace BattleSystem.Battles.TurnBased.Extensions
             int baseSuccess,
             int linearFactor,
             int minimumSuccessRate,
+            Character user,
             IRandom random,
             MoveUseResult failureResult,
             IActionHistory actionHistory)
         {
-            return builder.WithSuccessCalculator(
-                new DecreasesLinearlyWithUsesSuccessCalculator(
+            return builder.WithSuccessCalculatorFactory(
+                () => new DecreasesLinearlyWithUsesSuccessCalculator(
                     baseSuccess,
                     linearFactor,
                     minimumSuccessRate,
+                    user,
                     random,
                     failureResult,
                     actionHistory
