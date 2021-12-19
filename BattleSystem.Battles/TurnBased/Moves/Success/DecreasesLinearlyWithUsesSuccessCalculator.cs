@@ -1,7 +1,6 @@
 ﻿using System;
 using BattleSystem.Core.Characters;
 using BattleSystem.Core.Moves;
-using BattleSystem.Core.Random;
 using BattleSystem.Core.Success;
 
 namespace BattleSystem.Battles.TurnBased.Moves.Success
@@ -36,7 +35,7 @@ namespace BattleSystem.Battles.TurnBased.Moves.Success
         /// <summary>
         /// The random number generator.
         /// </summary>
-        private readonly IRandom _random;
+        private readonly Random _random;
 
         /// <summary>
         /// The result to return in the case of failure.
@@ -62,7 +61,7 @@ namespace BattleSystem.Battles.TurnBased.Moves.Success
             int linearFactor,
             int minimumSuccessRate,
             Character user,
-            IRandom random,
+            Random random,
             MoveUseResult failureResult,
             IActionHistory actionHistory)
         {

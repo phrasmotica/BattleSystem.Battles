@@ -1,9 +1,9 @@
-﻿using BattleSystem.Abstractions.Control;
+﻿using System;
+using BattleSystem.Abstractions.Control;
 using BattleSystem.Battles.TurnBased.Actions.Damage.Calculators;
 using BattleSystem.Battles.TurnBased.Actions.Tags;
 using BattleSystem.Battles.TurnBased.Actions.Targets;
 using BattleSystem.Core.Actions.Damage;
-using BattleSystem.Core.Random;
 
 namespace BattleSystem.Battles.TurnBased.Extensions
 {
@@ -38,7 +38,7 @@ namespace BattleSystem.Battles.TurnBased.Extensions
             this DamageActionBuilder builder,
             int startingBasePower,
             int linearFactor,
-            IRandom random,
+            Random random,
             IActionHistory actionHistory)
         {
             return builder.WithDamageCalculator(new BasePowerIncreasesLinearlyWithUsesDamageCalculator(startingBasePower, linearFactor, random, actionHistory));

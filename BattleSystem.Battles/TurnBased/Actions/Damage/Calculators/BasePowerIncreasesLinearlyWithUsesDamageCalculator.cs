@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using BattleSystem.Core.Actions.Damage;
 using BattleSystem.Core.Actions.Damage.Calculators;
 using BattleSystem.Core.Characters;
-using BattleSystem.Core.Random;
 
 namespace BattleSystem.Battles.TurnBased.Actions.Damage.Calculators
 {
@@ -27,7 +26,7 @@ namespace BattleSystem.Battles.TurnBased.Actions.Damage.Calculators
         /// <summary>
         /// The random number generator.
         /// </summary>
-        private readonly IRandom _random;
+        private readonly Random _random;
 
         /// <summary>
         /// The action history.
@@ -44,7 +43,7 @@ namespace BattleSystem.Battles.TurnBased.Actions.Damage.Calculators
         public BasePowerIncreasesLinearlyWithUsesDamageCalculator(
             int startingBasePower,
             int linearFactor,
-            IRandom random,
+            Random random,
             IActionHistory actionHistory)
         {
             _startingBasePower = startingBasePower;

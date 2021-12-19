@@ -1,7 +1,7 @@
-﻿using BattleSystem.Battles.TurnBased.Moves.Success;
+﻿using System;
+using BattleSystem.Battles.TurnBased.Moves.Success;
 using BattleSystem.Core.Characters;
 using BattleSystem.Core.Moves;
-using BattleSystem.Core.Random;
 
 namespace BattleSystem.Battles.TurnBased.Extensions
 {
@@ -27,7 +27,7 @@ namespace BattleSystem.Battles.TurnBased.Extensions
             int linearFactor,
             int minimumSuccessRate,
             Character user,
-            IRandom random,
+            Random random,
             MoveUseResult failureResult,
             IActionHistory actionHistory)
         {
