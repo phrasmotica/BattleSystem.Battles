@@ -33,7 +33,7 @@ namespace BattleSystem.Battles.TurnBased
         /// <param name="moveUse">The move use.</param>
         public bool Push(MoveUse moveUse)
         {
-            if (moveUse.Move.CanUse())
+            if (moveUse.Move.CanUse)
             {
                 Queue.Add(moveUse);
                 return true;
